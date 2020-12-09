@@ -8,6 +8,10 @@ import yaml
 import json
 import logging
 import os
+import re
+import sys
+import unicodedata
+
 
 configfile = os.path.join(os.path.dirname(os.path.realpath(__file__)),'config.yaml')
 
@@ -27,9 +31,15 @@ def main():
             i+=1
         for key in rawquotes.keys():
             print(key)
-        print(quotestack[0].encode("utf-8"))
     except:
         print('Reddit Does Not Like You')
+
+#   Tidy quotes
+    i=0
+    while i<len(quotestack):
+        result = unicodedata.normalize('NFKD', quotestack[i]).encode('ascii', 'ignore')
+        print(result.decode())
+        i+=1
 
 if __name__ == '__main__':
     main()
