@@ -1,8 +1,40 @@
 
 from time import sleep
 import argparse
+from PIL import Image, ImageDraw, ImageFont
+from sys import path
+from IT8951 import constants
+import os, random
 
-from test_functions import *
+
+def print_system_info(display):
+    epd = display.epd
+
+    print('System info:')
+    print('  display size: {}x{}'.format(epd.width, epd.height))
+    print('  img buffer address: {:X}'.format(epd.img_buf_address))
+    print('  firmware version: {}'.format(epd.firmware_version))
+    print('  LUT version: {}'.format(epd.lut_version))
+    print()
+
+def display_image_8bpp(display):
+
+    img_path = 	"images/"+random.choice(os.listdir("images/")) #change dir name to whatever
+    print('Displaying "{}"...'.format(img_path))
+
+    # clearing image to white
+    display.frame_buf.paste(0xFF, box=(0, 0, display.width, display.height))
+
+    img = Image.open(img_path)
+
+    # TODO: this should be built-in
+    dims = (display.width, display.height)
+
+    img.thumbnail(dims)
+    paste_coords = [dims[i] - img.size[i] for i in (0,1)]  # align image with bottom of display
+    display.frame_buf.paste(img, paste_coords)
+
+    display.draw_full(constants.DisplayModes.GC16)
 
 def parse_args():
     p = argparse.ArgumentParser(description='Test EPD functionality')
@@ -29,7 +61,7 @@ def main():
         # value means faster display refreshes. the documentation for the IT8951 device
         # says the max is 24 MHz (24000000), but my device seems to still work as high as
         # 80 MHz (80000000)
-        display = AutoEPDDisplay(vcom=-2.06, rotate=args.rotate, spi_hz=24000000)
+        display = AutoEPDDisplay(vcom=-2.69, rotate=args.rotate, spi_hz=24000000)
 
         print('VCOM set to', display.epd.get_vcom())
 
@@ -39,17 +71,7 @@ def main():
         from IT8951.display import VirtualEPDDisplay
         display = VirtualEPDDisplay(dims=(800, 600), rotate=args.rotate)
 
-    tests += [
-        clear_display,
-        display_gradient,
-        partial_update,
-        display_image_8bpp,
-    ]
-
-    for t in tests:
-        t(display)
-        sleep(1)
-
+    display_image_8bpp(display)
     print('Done!')
 
 if __name__ == '__main__':
