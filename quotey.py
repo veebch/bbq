@@ -48,7 +48,7 @@ def clear_display(display):
 def newyorkercartoon():
     print("Get a Cartoon")
 
-def guarianheadlines()
+def guardianheadlines():
     print("Get the Headlines")
 
 def wordaday():
@@ -119,6 +119,8 @@ def main():
         from IT8951.display import VirtualEPDDisplay
         display = VirtualEPDDisplay(dims=(800, 600), rotate=args.rotate)
     print_system_info(display)
+    my_list = [guardianheadlines, wordaday, redditquotes,socialmetrics,newyorkercartoon]
+    random.choice(my_list)()
     display_image_8bpp(display)
     print('Done!')
 
