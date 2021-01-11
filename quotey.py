@@ -7,6 +7,8 @@ from IT8951 import constants
 import os, random
 import textwrap
 import qrcode
+import feedparser
+import requests
 
 
 def print_system_info(display):
@@ -45,42 +47,44 @@ def clear_display(display):
     print('Clearing display...')
     display.clear()
 
-def newyorkercartoon():
+def newyorkercartoon(img):
     print("Get a Cartoon")
-
-def guardianheadlines():
-    print("Get the Headlines")
-
-def wordaday():
-    print("get word a day")
-
-def socialmetrics():
-    print("get social metrics")
-
-def redditquotes():
-    print("get reddit quotes")
-
-def display_image_8bpp(display):
-    gudepath = 	"gudetama.png"
-    # clearing image to white
-    clear_display(display)
-#    display.frame_buf.paste(0xFF, box=(0, 0, display.width, display.height))
-    
-    img = Image.new("RGB", (1448, 1072), color = (255, 255, 255) )
+    gudepath =  "gudetama.png"
     imggude = Image.open(gudepath)
-    # TODO: this should be built-in
-    dims = (display.width, display.height)
+    imggude2=imggude.resize((200,150), Image.ANTIALIAS)
+    img.paste(imggude2,(100, 100))
 
+    return img
+
+def guardianheadlines(img):
+    print("Get the Headlines")
+    logourl="https://assets.guim.co.uk/images/guardian-logo-rss.c45beb1bafa34b347ac333af2e6fe23f.png"
+    d = feedparser.parse('https://www.theguardian.com/uk/rss')
+    imlogo = Image.open(requests.get(logourl, stream=True).raw)
+    img.paste(imlogo,(100, 100))
+    print (d['title'])
+    return img
+
+def wordaday(img):
+    print("get word a day")
+    return img
+
+def socialmetrics(img):
+    print("get social metrics")
+    return img
+
+def redditquotes(img):
+    print("get reddit quotes")
+    _place_text(img,"$34,150",0,350)
+    return img
+
+def display_image_8bpp(display, img):
+
+    dims = (display.width, display.height)
     img.thumbnail(dims)
     paste_coords = [dims[i] - img.size[i] for i in (0,1)]  # align image with bottom of display
-
-    imggude2=imggude.resize((700,500), Image.ANTIALIAS)
-    img.paste(imggude2,(450, 250))
-    sleep(1)
-    _place_text(img,"$34,150",0,350)
     img=img.rotate(180, expand=True)
     display.frame_buf.paste(img, paste_coords)
-
     display.draw_full(constants.DisplayModes.GC16)
 
 
@@ -113,15 +117,15 @@ def main():
 
         print('VCOM set to', display.epd.get_vcom())
 
-#        tests += [print_system_info]
-
     else:
         from IT8951.display import VirtualEPDDisplay
         display = VirtualEPDDisplay(dims=(800, 600), rotate=args.rotate)
     print_system_info(display)
-    my_list = [guardianheadlines, wordaday, redditquotes,socialmetrics,newyorkercartoon]
-    random.choice(my_list)()
-    display_image_8bpp(display)
+    my_list = [guardianheadlines]
+    clear_display(display)
+    img = Image.new("RGB", (1448, 1072), color = (255, 255, 255) )
+    img=random.choice(my_list)(img)
+    display_image_8bpp(display,img)
     print('Done!')
 
 if __name__ == '__main__':
