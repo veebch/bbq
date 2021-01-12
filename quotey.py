@@ -80,13 +80,19 @@ def writewrappedlines(img,text,fontsize):
         y_text += height
     return img
 
-def replacenth(string, sub, wanted, n):
-    where = [m.start() for m in re.finditer(sub, string)][n-1]
-    before = string[:where]
-    after = string[where:]
-    after.replace(sub, wanted, 1)
-    newString = before + after
-    return newString
+def nth_repl(s, sub, repl, n):
+    find = s.find(sub)
+    # If find is not -1 we have found at least one match for the substring
+    i = find != -1
+    # loop util we find the nth or we find no match
+    while find != -1 and i != n:
+        # find + 1 means we start searching from after the last match
+        find = s.find(sub, find + 1)
+        i += 1
+    # If i is equal to n we found nth match so replace
+    if i == n:
+        return s[:find] + repl + s[find+len(sub):]
+    return s
 
 def by_size(words, size):
     return [word for word in words if len(word) <= size]
@@ -125,15 +131,19 @@ def redditquotes(img):
     
     while True:
         quote=random.choice (quotestack)
+    #   Replace rancypants quotes with vanilla quotes
+        quote=re.sub("“", "\"", quote)
+        quote=re.sub("”", "\"", quote)
         string = quote
         count = quote.count("\"")
         print("Count="+str(count))
-        if count == 2:
-            logging.info("Repairing a quotation only Quate")
-            sub = '\"'
-            wanted = '\" ~'
-            n = 2
-            quote=replacenth(quote, sub, wanted, n)
+        if count >= 2:
+            print("2 or more quotes - split after last one")
+            sub = "\""
+            wanted = "\" ~"
+            n = count
+            quote=nth_repl(quote, sub, wanted, n)
+            print(quote)
 
         quote= re.sub("\s+\"\s+", "\"", quote)
         quote= re.sub("~|-|—|―", "--", quote)
@@ -141,6 +151,10 @@ def redditquotes(img):
 
         splitquote = quote.split("--")
         quote = splitquote[0]
+
+        quote = quote.strip()
+        quote = quote.strip("\"")
+        quote = quote.strip()
 
         if splitquote[-1]!=splitquote[0]:
             img=writewrappedlines(img,quote,80)
