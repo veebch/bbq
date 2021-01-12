@@ -24,7 +24,7 @@ def print_system_info(display):
     print('  LUT version: {}'.format(epd.lut_version))
     print()
 
-def _place_text(img, text, x_offset=0, y_offset=0,fontsize=40):
+def _place_text(img, text, x_offset=0, y_offset=0,fontsize=40,fontstring="Forum-Regular"):
     '''
     Put some centered text at a location on the image.
     '''
@@ -32,7 +32,7 @@ def _place_text(img, text, x_offset=0, y_offset=0,fontsize=40):
     draw = ImageDraw.Draw(img)
 
     try:
-        font = ImageFont.truetype('./fonts/JosefinSans-.ttf', fontsize)
+        font = ImageFont.truetype('./fonts/'+fontstring+'.ttf', fontsize)
     except OSError:
         font = ImageFont.truetype('/usr/share/fonts/TTF/DejaVuSans.ttf', fontsize)
 
@@ -45,11 +45,11 @@ def _place_text(img, text, x_offset=0, y_offset=0,fontsize=40):
 
     draw.text((draw_x, draw_y), text, font=font,fill=(0,0,0) )
 
-def writewrappedlines(img,text,fontsize,y_text=-300,height=110, width=27):
+def writewrappedlines(img,text,fontsize,y_text=-300,height=110, width=27,fontstring="Forum-Regular"):
     lines = textwrap.wrap(text, width)
     for line in lines:
         width= 0
-        _place_text(img, line,0, y_text, fontsize)
+        _place_text(img, line,0, y_text, fontsize,fontstring)
         y_text += height
     return img
 
@@ -63,26 +63,34 @@ def newyorkercartoon(img):
     caption=d.entries[0].summary
     imagedeets = d.entries[0].media_thumbnail[0]
     imframe = Image.open(requests.get(imagedeets['url'], stream=True).raw)
-    size = 900,900
-    imframe.thumbnail(size)
-    xvalue= int(1448/2-450)
-    img.paste(imframe,(xvalue, 10))
-
-    writewrappedlines(img,caption,40,390,50,50)
+    resize = 1200,800
+    imframe.thumbnail(resize)
+    imwidth, imheight = imframe.size
+    xvalue= int(1448/2-imwidth/2)
+    img.paste(imframe,(xvalue, 75))
+    fontstring="Forum-Regular"
+    y_text= 390
+    height= 50
+    width= 50
+    fontsize=60
+    img=writewrappedlines(img,caption,fontsize,y_text,height, width,fontstring)
     return img
 
 def guardianheadlines(img):
     print("Get the Headlines")
 
     d = feedparser.parse('https://www.theguardian.com/uk/rss')
-    logourl=d['feed']['image']['href']
-    print(d.url)
-    imlogo = Image.open(requests.get(logourl, stream=True).raw)
+    imlogo = Image.open("images/guardianlogo.jpg")
+    resize = 800,150
+    imlogo.thumbnail(resize)
     img.paste(imlogo,(100, 100))
-
-
     text=d.entries[0].title
-    img=writewrappedlines(img,text,80)
+    fontstring="Merriweather-Light"
+    y_text=-200
+    height= 140
+    width= 27
+    fontsize=100
+    img=writewrappedlines(img,text,fontsize,y_text,height, width,fontstring)
 
     return img
 
@@ -105,6 +113,22 @@ def by_size(words, size):
 
 def wordaday(img):
     print("get word a day")
+
+    d = feedparser.parse('https://wordsmith.org/awad/rss1.xml')
+    wad = d.entries[0].title
+    fontstring="Forum-Regular"
+    y_text=-200
+    height= 110
+    width= 27
+    fontsize=180
+    img=writewrappedlines(img,wad,fontsize,y_text,height, width,fontstring)
+    wadsummary= d.entries[0].summary
+    fontstring="GoudyBookletter1911-Regular"
+    y_text=0
+    height= 80
+    width= 49
+    fontsize=70
+    img=writewrappedlines(img,wadsummary,fontsize,y_text,height, width,fontstring)
     return img
 
 def socialmetrics(img):
@@ -163,11 +187,16 @@ def redditquotes(img):
         quote = quote.strip()
 
         if splitquote[-1]!=splitquote[0]:
-            img=writewrappedlines(img,quote,80)
+            fontstring = "JosefinSans-Light"
+            y_text= -300
+            height= 110
+            width= 27
+            fontsize=100
+            img=writewrappedlines(img,quote,fontsize,y_text,height, width,fontstring)
             source = splitquote[-1]
             source = source.strip()
             print(source)
-            _place_text(img,source,0,380,50)
+            _place_text(img,source,0,380,80)
             break
 
     return img
@@ -215,7 +244,7 @@ def main():
         from IT8951.display import VirtualEPDDisplay
         display = VirtualEPDDisplay(dims=(800, 600), rotate=args.rotate)
     print_system_info(display)
-    my_list = [newyorkercartoon, guardianheadlines, redditquotes]
+    my_list = [wordaday, newyorkercartoon, guardianheadlines, redditquotes]
     clear_display(display)
     img = Image.new("RGB", (1448, 1072), color = (255, 255, 255) )
     img=random.choice(my_list)(img)
