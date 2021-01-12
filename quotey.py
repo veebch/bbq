@@ -45,6 +45,14 @@ def _place_text(img, text, x_offset=0, y_offset=0,fontsize=40):
 
     draw.text((draw_x, draw_y), text, font=font,fill=(0,0,0) )
 
+def writewrappedlines(img,text,fontsize,y_text=-300,height=110, width=27):
+    lines = textwrap.wrap(text, width)
+    for line in lines:
+        width= 0
+        _place_text(img, line,0, y_text, fontsize)
+        y_text += height
+    return img
+
 def clear_display(display):
     print('Clearing display...')
     display.clear()
@@ -52,7 +60,15 @@ def clear_display(display):
 def newyorkercartoon(img):
     print("Get a Cartoon")
     d = feedparser.parse('https://www.newyorker.com/feed/cartoons/daily-cartoon')
-    cartoonurl=d.item[0]
+    caption=d.entries[8].summary
+    imagedeets = d.entries[8].media_thumbnail[0]
+    imframe = Image.open(requests.get(imagedeets['url'], stream=True).raw)
+    size = 1100,1100
+    imframe.thumbnail(size)
+    xvalue= int(1448/2-550)
+    img.paste(imframe,(xvalue, 10))
+
+    writewrappedlines(img,caption,40,360,50,50)
     return img
 
 def guardianheadlines(img):
@@ -68,16 +84,6 @@ def guardianheadlines(img):
     text=d.entries[0].title
     img=writewrappedlines(img,text,80)
 
-    return img
-
-
-def writewrappedlines(img,text,fontsize):
-    lines = textwrap.wrap(text, width=27)
-    y_text = -300
-    for line in lines:
-        width, height = 0, 110
-        _place_text(img, line,0, y_text, fontsize)
-        y_text += height
     return img
 
 def nth_repl(s, sub, repl, n):
@@ -209,7 +215,7 @@ def main():
         from IT8951.display import VirtualEPDDisplay
         display = VirtualEPDDisplay(dims=(800, 600), rotate=args.rotate)
     print_system_info(display)
-    my_list = [redditquotes]
+    my_list = [newyorkercartoon]
     clear_display(display)
     img = Image.new("RGB", (1448, 1072), color = (255, 255, 255) )
     img=random.choice(my_list)(img)
