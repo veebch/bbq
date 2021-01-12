@@ -60,15 +60,15 @@ def clear_display(display):
 def newyorkercartoon(img):
     print("Get a Cartoon")
     d = feedparser.parse('https://www.newyorker.com/feed/cartoons/daily-cartoon')
-    caption=d.entries[8].summary
-    imagedeets = d.entries[8].media_thumbnail[0]
+    caption=d.entries[0].summary
+    imagedeets = d.entries[0].media_thumbnail[0]
     imframe = Image.open(requests.get(imagedeets['url'], stream=True).raw)
-    size = 1100,1100
+    size = 900,900
     imframe.thumbnail(size)
-    xvalue= int(1448/2-550)
+    xvalue= int(1448/2-450)
     img.paste(imframe,(xvalue, 10))
 
-    writewrappedlines(img,caption,40,360,50,50)
+    writewrappedlines(img,caption,40,390,50,50)
     return img
 
 def guardianheadlines(img):
@@ -215,7 +215,7 @@ def main():
         from IT8951.display import VirtualEPDDisplay
         display = VirtualEPDDisplay(dims=(800, 600), rotate=args.rotate)
     print_system_info(display)
-    my_list = [newyorkercartoon]
+    my_list = [newyorkercartoon, guardianheadlines, redditquotes]
     clear_display(display)
     img = Image.new("RGB", (1448, 1072), color = (255, 255, 255) )
     img=random.choice(my_list)(img)
