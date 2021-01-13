@@ -13,6 +13,10 @@ import textwrap
 import unicodedata
 import re
 import logging
+import os
+dirname = os.path.dirname(__file__)
+
+
 
 def print_system_info(display):
     epd = display.epd
@@ -32,7 +36,8 @@ def _place_text(img, text, x_offset=0, y_offset=0,fontsize=40,fontstring="Forum-
     draw = ImageDraw.Draw(img)
 
     try:
-        font = ImageFont.truetype('./fonts/'+fontstring+'.ttf', fontsize)
+        filename = os.path.join(dirname, './fonts/'+fontstring+'.ttf')
+        font = ImageFont.truetype(filename, fontsize)
     except OSError:
         font = ImageFont.truetype('/usr/share/fonts/TTF/DejaVuSans.ttf', fontsize)
 
@@ -80,7 +85,8 @@ def guardianheadlines(img):
     print("Get the Headlines")
 
     d = feedparser.parse('https://www.theguardian.com/uk/rss')
-    imlogo = Image.open("images/guardianlogo.jpg")
+    filename = os.path.join(dirname, 'images/guardianlogo.jpg')
+    imlogo = Image.open(filename)
     resize = 800,150
     imlogo.thumbnail(resize)
     img.paste(imlogo,(100, 100))
@@ -89,7 +95,7 @@ def guardianheadlines(img):
     y_text=-200
     height= 140
     width= 27
-    fontsize=100
+    fontsize=90
     img=writewrappedlines(img,text,fontsize,y_text,height, width,fontstring)
 
     return img
