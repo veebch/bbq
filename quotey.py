@@ -143,7 +143,7 @@ def socialmetrics(img):
 
 def redditquotes(img):
     print("get reddit quotes")
-    quoteurl = 'https://www.reddit.com/r/quotes/top/.json?t=week&limit=100'
+    quoteurl = 'https://www.reddit.com/r/quotes/top/.json?t=day&limit=100'
     rawquotes = requests.get(quoteurl,headers={'User-agent': 'Chrome'}).json()
     quotestack = []
     i=0
@@ -192,7 +192,7 @@ def redditquotes(img):
         quote = quote.strip("\"")
         quote = quote.strip()
 
-        if splitquote[-1]!=splitquote[0]:
+        if splitquote[-1]!=splitquote[0] and len(splitquote[-1])<=20:
             fontstring = "JosefinSans-Light"
             y_text= -300
             height= 110
@@ -202,7 +202,10 @@ def redditquotes(img):
             source = splitquote[-1]
             source = source.strip()
             print(source)
-            _place_text(img,source,0,380,80)
+            draw = ImageDraw.Draw(img) 
+            draw.line((500,850, 948,850), fill=0, width=3)
+#           _place_text(img, text, x_offset=0, y_offset=0,fontsize=40,fontstring="Forum-Regular"):
+            _place_text(img,source,0,390,80,"JosefinSans-Light")
             break
 
     return img
@@ -250,7 +253,7 @@ def main():
         from IT8951.display import VirtualEPDDisplay
         display = VirtualEPDDisplay(dims=(800, 600), rotate=args.rotate)
     print_system_info(display)
-    my_list = [wordaday, newyorkercartoon, guardianheadlines, redditquotes]
+    my_list = [redditquotes,wordaday, newyorkercartoon, guardianheadlines]
     clear_display(display)
     img = Image.new("RGB", (1448, 1072), color = (255, 255, 255) )
     img=random.choice(my_list)(img)
