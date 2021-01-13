@@ -203,7 +203,7 @@ def redditquotes(img):
             source = source.strip()
             print(source)
             draw = ImageDraw.Draw(img) 
-            draw.line((500,850, 948,850), fill=0, width=3)
+            draw.line((500,820, 948,820), fill=32, width=3)
 #           _place_text(img, text, x_offset=0, y_offset=0,fontsize=40,fontstring="Forum-Regular"):
             _place_text(img,source,0,390,80,"JosefinSans-Light")
             break
