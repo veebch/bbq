@@ -167,7 +167,7 @@ def redditquotes(img):
     
     while True:
         quote=random.choice (quotestack)
-    #   Replace rancypants quotes with vanilla quotes
+    #   Replace fancypants quotes with vanilla quotes
         quote=re.sub("“", "\"", quote)
         quote=re.sub("”", "\"", quote)
         string = quote
