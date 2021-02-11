@@ -13,7 +13,7 @@ As well as producing quotes, the script occasionally places other content on the
 The script randomly chooses from 4 options:
 
 - Quote (from [r/quotes](https://reddit.com/r/quotes))
-- Word of the Day (from [wordsmith.org](https://wordsmith.org)
+- Word of the Day (from [wordsmith.org](https://wordsmith.org))
 - Headline (From The Guardian)
 - Cartoon (From The New Yorker)
 
