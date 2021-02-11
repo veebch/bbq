@@ -19,11 +19,11 @@ The script randomly chooses from 4 options:
 
 # Installation
 
-clone this repository using
+First, clone this repository using
 
     git clone https://github.com/llvllch/bbq
 
-then 
+then:
 
     cd bbq
     
@@ -32,7 +32,7 @@ Install the required modules using pip:
     python3 -m pip install -r requirements.txt
 
 
-Run code using
+Run the code using:
 
     python3 quotey.py
     
