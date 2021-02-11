@@ -69,7 +69,7 @@ def newyorkercartoon(img):
     imagedeets = d.entries[0].media_thumbnail[0]
     imframe = Image.open(requests.get(imagedeets['url'], stream=True).raw)
     resize = 1200,800
-    imframe.thumbnail(resize)
+    imframe.thumbnail(resize, Image.ANTIALIAS)
     imwidth, imheight = imframe.size
     xvalue= int(1448/2-imwidth/2)
     img.paste(imframe,(xvalue, 75))
@@ -132,7 +132,7 @@ def wordaday(img):
     fontstring="GoudyBookletter1911-Regular"
     y_text=0
     height= 80
-    width= 49
+    width= 40
     fontsize=70
     img=writewrappedlines(img,wadsummary,fontsize,y_text,height, width,fontstring)
     return img
@@ -143,7 +143,7 @@ def socialmetrics(img):
 
 def redditquotes(img):
     print("get reddit quotes")
-    quoteurl = 'https://www.reddit.com/r/quotes/top/.json?t=day&limit=100'
+    quoteurl = 'https://www.reddit.com/r/quotes/top/.json?t=week&limit=100'
     rawquotes = requests.get(quoteurl,headers={'User-agent': 'Chrome'}).json()
     quotestack = []
     i=0
@@ -163,7 +163,7 @@ def redditquotes(img):
         result = unicodedata.normalize('NFKD', quotestack[i]).encode('ascii', 'ignore')
         quotestack[i]=result.decode()
         i+=1
-    quotestack = by_size(quotestack, 140)
+    quotestack = by_size(quotestack, 170)
     
     while True:
         quote=random.choice (quotestack)
@@ -181,10 +181,18 @@ def redditquotes(img):
             quote=nth_repl(quote, sub, wanted, n)
             print(quote)
 
-        quote= re.sub("\s+\"\s+", "\"", quote)
-        quote= re.sub("~|-|—|―", "--", quote)
+        else:
+            matchObj = re.search(r"(\.)\s(\w+)$",quote)
+            if matchObj:
+                quote= re.sub("\.\s*\w+$", " ~ "+matchObj.group(2), quote)
+            matchObj = re.search(r"\((\w+)\)$",quote)
+            if matchObj:
+                quote= re.sub("\(\w+\)$", matchObj.group(1), quote)
+            quote= re.sub("\s+\"\s+", "\"", quote)
+            quote= re.sub("\s+-|\s+—|\s+―", "--", quote)
 
 
+        quote= re.sub("~", "--", quote)
         splitquote = quote.split("--")
         quote = splitquote[0]
 
@@ -192,7 +200,7 @@ def redditquotes(img):
         quote = quote.strip("\"")
         quote = quote.strip()
 
-        if splitquote[-1]!=splitquote[0] and len(splitquote[-1])<=20:
+        if splitquote[-1]!=splitquote[0] and len(splitquote[-1])<=25:
             fontstring = "JosefinSans-Light"
             y_text= -300
             height= 110
@@ -201,9 +209,10 @@ def redditquotes(img):
             img=writewrappedlines(img,quote,fontsize,y_text,height, width,fontstring)
             source = splitquote[-1]
             source = source.strip()
+            source = source.strip("-")
             print(source)
             draw = ImageDraw.Draw(img) 
-            draw.line((500,820, 948,820), fill=32, width=3)
+            draw.line((500,830, 948,830), fill=255, width=3)
 #           _place_text(img, text, x_offset=0, y_offset=0,fontsize=40,fontstring="Forum-Regular"):
             _place_text(img,source,0,390,80,"JosefinSans-Light")
             break
@@ -253,7 +262,7 @@ def main():
         from IT8951.display import VirtualEPDDisplay
         display = VirtualEPDDisplay(dims=(800, 600), rotate=args.rotate)
     print_system_info(display)
-    my_list = [redditquotes,wordaday, newyorkercartoon, guardianheadlines]
+    my_list = [redditquotes]#,wordaday, newyorkercartoon, guardianheadlines]
     clear_display(display)
     img = Image.new("RGB", (1448, 1072), color = (255, 255, 255) )
     img=random.choice(my_list)(img)
