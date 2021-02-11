@@ -6,7 +6,9 @@ The reason for using r/quotes rather than a curated database, is that the karma 
 
 The quality of the results depends on the adherence to convention in posts to [r/quotes](https://reddit.com/r/quotes) and the quality of the regex in the script. Currently the script is rarely producing garbled quotes, so it's ready for sharing. 
 
-As well as producing quotes, the script randomly chooses from 4 options:
+As well as producing quotes, the script occasionally places other content on the epaper - to keep things interesting.
+
+The script randomly chooses from 4 options:
 
 - Quote (from [r/quotes](https://reddit.com/r/quotes))
 - Word of the Day (from [wordsmith.org](https://wordsmith.org)
