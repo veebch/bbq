@@ -6,18 +6,12 @@ The reason for using r/quotes rather than a curated database, is that the karma 
 
 The quality of the results depends on the adherence to convention in posts to r/quotes and the quality of the regex in the script. Currently the script is rarely producing garbled quotes, so it's ready for sharing. 
 
-As well as producing quotes, the script randomly chooses form 4 options:
+As well as producing quotes, the script randomly chooses from 4 options:
 
 - Quote (from r/quotes)
 - Word of the Day (
 - Headline (From The Guardian)
 - Cartoon (From The New Yorker)
-
-## Word a Day
-
-## Guardian Headline
-
-## New Yorker Cartoon
 
 # Installation
 
