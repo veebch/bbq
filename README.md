@@ -1,3 +1,5 @@
+![Action Shot](/images/example.jpg)
+
 # The Daily Basic-Bitch Quote (and Word a Day and Headline and Cartoon) Scraper
 
 This is a script that parses content from [r/quotes](https://reddit.com/r/quotes) and tidies it up a little to make an ever-changing Quote poster, using content from the hive-mind that is the internet. 
