@@ -26,9 +26,13 @@ clone this repository using
     git clone https://github.com/llvllch/bbq
 
 then 
+
     cd bbq
     
-Install requirements
+Install the required modules using pip:
+
+    python3 -m pip install -r requirements.txt
+
 
 Run code using
 
