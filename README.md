@@ -4,12 +4,12 @@ This is a script that parses content from [r/quotes](https://reddit.com/r/quotes
 
 The reason for using r/quotes rather than a curated database, is that the karma score on reddit is a really good way to ensure quotes that are interesting and topical. 
 
-The quality of the results depends on the adherence to convention in posts to r/quotes and the quality of the regex in the script. Currently the script is rarely producing garbled quotes, so it's ready for sharing. 
+The quality of the results depends on the adherence to convention in posts to [r/quotes](https://reddit.com/r/quotes) and the quality of the regex in the script. Currently the script is rarely producing garbled quotes, so it's ready for sharing. 
 
 As well as producing quotes, the script randomly chooses from 4 options:
 
-- Quote (from r/quotes)
-- Word of the Day (
+- Quote (from [r/quotes](https://reddit.com/r/quotes))
+- Word of the Day (from [wordsmith.org](https://wordsmith.org)
 - Headline (From The Guardian)
 - Cartoon (From The New Yorker)
 
