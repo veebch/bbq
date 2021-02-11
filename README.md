@@ -1,6 +1,6 @@
 # The Daily Basic Bitch Quote (and WAD and Headline and Cartoon) Scraper
 
-This is a script that parses content from r/quotes and tidies it up a little to make a ever-changing Quote poster, using content from the hive-mind that is the internet. 
+This is a script that parses content from [r/quotes](https://reddit.com/r/quotes) and tidies it up a little to make a ever-changing Quote poster, using content from the hive-mind that is the internet. 
 
 The reason for using r/quotes rather than a curated database, is that the karma score on reddit is a really good way to ensure quotes that are interesting and topical. 
 
@@ -29,4 +29,8 @@ Install the required modules using pip:
 
 
 Run code using
+
+    python3 quotey.py
+    
+To periodically run the script, set it as a cronjob
 
