@@ -4,7 +4,6 @@
 
 # The Daily Basic-Bitch Quote (and Word a Day and Headline and Cartoon) Scraper
 
-[![video](https://img.youtube.com/vi/-270Nn1V2hQ/0.jpg)](https://www.youtube.com/watch?v=-270Nn1V2hQ)
 
 This is a script that parses content from [r/quotes](https://reddit.com/r/quotes) and tidies it up a little to make an ever-changing Quote poster, using content from the hive-mind that is the internet. 
 
@@ -43,4 +42,8 @@ Run the code using:
     python3 quotey.py
     
 To periodically run the script, set it as a [cronjob](https://opensource.com/article/17/11/how-use-cron-linux)
+
+# Video
+
+[![video](https://img.youtube.com/vi/-270Nn1V2hQ/0.jpg)](https://www.youtube.com/watch?v=-270Nn1V2hQ)
 
