@@ -1,6 +1,6 @@
 
 
-![Action Shot](/images/actionshot/example.jpg)
+![Action Shot](/images/example.jpg)
 
 # The Daily Basic-Bitch Quote (and Word a Day and Headline and Cartoon) Scraper
 
