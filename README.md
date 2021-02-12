@@ -1,5 +1,5 @@
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/-270Nn1V2hQ/0.jpg)](https://www.youtube.com/watch?v=-270Nn1V2hQ)
+[![video](https://img.youtube.com/vi/-270Nn1V2hQ/0.png)](https://www.youtube.com/watch?v=-270Nn1V2hQ)
 
 # The Daily Basic-Bitch Quote (and Word a Day and Headline and Cartoon) Scraper
 
