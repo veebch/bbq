@@ -1,8 +1,10 @@
 
 
-[![video](https://img.youtube.com/vi/-270Nn1V2hQ/0.jpg)](https://www.youtube.com/watch?v=-270Nn1V2hQ)
+
 
 # The Daily Basic-Bitch Quote (and Word a Day and Headline and Cartoon) Scraper
+
+[![video](https://img.youtube.com/vi/-270Nn1V2hQ/0.jpg)](https://www.youtube.com/watch?v=-270Nn1V2hQ)
 
 This is a script that parses content from [r/quotes](https://reddit.com/r/quotes) and tidies it up a little to make an ever-changing Quote poster, using content from the hive-mind that is the internet. 
 
