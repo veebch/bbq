@@ -7,7 +7,6 @@ from sys import path
 from IT8951 import constants
 import os, random
 import textwrap
-import qrcode
 import feedparser
 import requests
 import textwrap
