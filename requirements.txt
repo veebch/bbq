@@ -2,5 +2,5 @@ feedparser==6.0.2
 requests==2.21.0
 instagram_private_api==1.6.0
 qrcode==6.1
-Pillow==8.1.0
+Pillow>=8.1.0
 PyYAML==5.4.1
