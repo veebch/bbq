@@ -22,7 +22,13 @@ The script randomly chooses from 4 options:
 - Headline (From The Guardian)
 - Cartoon (From The New Yorker)
 
+# Prerequisites
+
+A working Pi with waveshare 6inch HD ePaper attached
+The Python module for [IT8951](https://github.com/GregDMeyer/IT8951) installed
+
 # Installation
+
 
 First, clone this repository using
 
