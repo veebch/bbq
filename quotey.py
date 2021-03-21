@@ -228,9 +228,9 @@ def redditquotes(img):
             source = source.strip("-")
             print(source)
             draw = ImageDraw.Draw(img) 
-            draw.line((500,830, 948,830), fill=255, width=3)
+            draw.line((500,880, 948,880), fill=255, width=3)
 #           _place_text(img, text, x_offset=0, y_offset=0,fontsize=40,fontstring="Forum-Regular"):
-            _place_text(img,source,0,390,80,"JosefinSans-Light")
+            _place_text(img,source,0,430,80,"JosefinSans-Light")
             break
 
     return img
@@ -270,7 +270,7 @@ def main():
         # value means faster display refreshes. the documentation for the IT8951 device
         # says the max is 24 MHz (24000000), but my device seems to still work as high as
         # 80 MHz (80000000)
-        display = AutoEPDDisplay(vcom=-2.69, rotate=args.rotate, spi_hz=24000000)
+        display = AutoEPDDisplay(vcom=-2.61, rotate=args.rotate, spi_hz=24000000)
 
         print('VCOM set to', display.epd.get_vcom())
 
