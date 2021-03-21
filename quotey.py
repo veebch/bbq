@@ -1,6 +1,7 @@
 
 from time import sleep
 import argparse
+import PIL
 from PIL import Image, ImageDraw, ImageFont
 from sys import path
 from IT8951 import constants
@@ -83,6 +84,11 @@ def newyorkercartoon(img):
 
 def guardianheadlines(img):
     print("Get the Headlines")
+    filenameaudrey = os.path.join(dirname, 'images/rabbitsq.png')
+    imlogoaud = Image.open(filenameaudrey)
+    resize = 300,300
+    imlogoaud.thumbnail(resize)
+    imlogoaud=imlogoaud.transpose(PIL.Image.FLIP_LEFT_RIGHT)
 
     d = feedparser.parse('https://www.theguardian.com/uk/rss')
     filename = os.path.join(dirname, 'images/guardianlogo.jpg')
@@ -90,6 +96,7 @@ def guardianheadlines(img):
     resize = 800,150
     imlogo.thumbnail(resize)
     img.paste(imlogo,(100, 100))
+    img.paste(imlogoaud,(1050, 760))
     text=d.entries[0].title
     fontstring="Merriweather-Light"
     y_text=-200
@@ -119,7 +126,10 @@ def by_size(words, size):
 
 def wordaday(img):
     print("get word a day")
-
+    filename = os.path.join(dirname, 'images/rabbitsq.png')
+    imlogo = Image.open(filename)
+    resize = 300,300
+    imlogo.thumbnail(resize)
     d = feedparser.parse('https://wordsmith.org/awad/rss1.xml')
     wad = d.entries[0].title
     fontstring="Forum-Regular"
@@ -128,6 +138,7 @@ def wordaday(img):
     width= 27
     fontsize=180
     img=writewrappedlines(img,wad,fontsize,y_text,height, width,fontstring)
+    img.paste(imlogo,(100, 760))
     wadsummary= d.entries[0].summary
     fontstring="GoudyBookletter1911-Regular"
     y_text=0
@@ -143,6 +154,10 @@ def socialmetrics(img):
 
 def redditquotes(img):
     print("get reddit quotes")
+    filename = os.path.join(dirname, 'images/rabbitsq.png')
+    imlogo = Image.open(filename)
+    resize = 300,300
+    imlogo.thumbnail(resize)
     quoteurl = 'https://www.reddit.com/r/quotes/top/.json?t=week&limit=100'
     rawquotes = requests.get(quoteurl,headers={'User-agent': 'Chrome'}).json()
     quotestack = []
@@ -207,6 +222,7 @@ def redditquotes(img):
             width= 27
             fontsize=100
             img=writewrappedlines(img,quote,fontsize,y_text,height, width,fontstring)
+            img.paste(imlogo,(100, 760))
             source = splitquote[-1]
             source = source.strip()
             source = source.strip("-")
@@ -262,12 +278,14 @@ def main():
         from IT8951.display import VirtualEPDDisplay
         display = VirtualEPDDisplay(dims=(800, 600), rotate=args.rotate)
     print_system_info(display)
-    my_list = [redditquotes]#,wordaday, newyorkercartoon, guardianheadlines]
+    my_list = [redditquotes,redditquotes,redditquotes,wordaday, guardianheadlines]
     clear_display(display)
     img = Image.new("RGB", (1448, 1072), color = (255, 255, 255) )
     img=random.choice(my_list)(img)
     display_image_8bpp(display,img)
     print('Done!')
+
+
 
 if __name__ == '__main__':
     main()
