@@ -215,13 +215,13 @@ def redditquotes(img):
         quote = quote.strip()
 
         if splitquote[-1]!=splitquote[0] and len(splitquote[-1])<=25:
+            img.paste(imlogo,(100, 760))
             fontstring = "JosefinSans-Light"
             y_text= -300
             height= 110
             width= 27
             fontsize=100
             img=writewrappedlines(img,quote,fontsize,y_text,height, width,fontstring)
-            img.paste(imlogo,(100, 760))
             source = splitquote[-1]
             source = source.strip()
             source = source.strip("-")
