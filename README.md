@@ -59,6 +59,10 @@ To periodically run the script, set it as a [cronjob](https://opensource.com/art
 
 [![video](https://img.youtube.com/vi/-270Nn1V2hQ/0.jpg)](https://www.youtube.com/watch?v=rRd_NkeSurI)
 
+# Contributing
+
+To contribute, please fork the repository and use a feature branch. Pull requests are welcome.
+
 # Licencing
 
 GNU GENERAL PUBLIC LICENSE Version 3.0
