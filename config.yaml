@@ -1,3 +1,10 @@
-screen:
-  invert: false
-  orientation: 90
+display:
+  inverted: false
+  maximalist: true
+  feedurl: https://news.hodlhodl.com/news.rss
+ticker:
+  currency: bitcoin,ethereum,monero
+  exchange: default
+  fiatcurrency: usd,eur,gbp
+  updatefrequency: 300
+  sparklinedays: 28
