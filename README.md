@@ -59,3 +59,7 @@ To periodically run the script, set it as a [cronjob](https://opensource.com/art
 
 [![video](https://img.youtube.com/vi/-270Nn1V2hQ/0.jpg)](https://www.youtube.com/watch?v=rRd_NkeSurI)
 
+# Licencing
+
+GNU GENERAL PUBLIC LICENSE Version 3.0
+
