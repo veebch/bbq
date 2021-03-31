@@ -1,8 +1,8 @@
 
 
-![Action Shot](/images/example.jpg)
+![Action Shot](/images/AudreyVid.jpg)
 
-# The Daily Basic-Bitch Quote (and Word a Day and Headline and Cartoon) Scraper
+# Audrey: Quiet bringer of the internets.
 
 
 This is a script that parses content from [r/quotes](https://reddit.com/r/quotes) and tidies it up a little to make an ever-changing Quote poster, using content from the hive-mind that is the internet. 
