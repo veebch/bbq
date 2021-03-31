@@ -10,7 +10,7 @@ The script randomly chooses from 5 options:
 - Word of the Day (from [wordsmith.org](https://wordsmith.org))
 - Headline (From The Guardian) (With QR code link to the article)
 - Cartoon (From The New Yorker)
-- Cryptocurrenct Dashboard
+- Cryptocurrency Dashboard
 
 ## Quotes
 
