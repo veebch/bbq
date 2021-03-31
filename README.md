@@ -4,7 +4,7 @@
 
 # Audrey: Quiet bringer of the internets.
 
-The script randomly chooses from 5 options:
+A little 6 inch e-paper screen that connects to wifi and runs a script that pulls the stuff that you've told it you're intersted in, then displays it in pleasingly crispy fonts. The script randomly chooses from 5 options:
 
 - Quote (from [r/quotes](https://reddit.com/r/quotes))
 - Word of the Day (from [wordsmith.org](https://wordsmith.org))
