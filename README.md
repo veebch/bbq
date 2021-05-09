@@ -57,7 +57,7 @@ To periodically run the script, set it as a [cronjob](https://opensource.com/art
 
 # Video
 
-[![video](https://img.youtube.com/vi/-270Nn1V2hQ/0.jpg)](https://www.youtube.com/watch?v=rRd_NkeSurI)
+[![video](https://img.youtube.com/vi/-270Nn1V2hQ/0.jpg)](https://www.youtube.com/watch?v=Xv8eyp-LJJk)
 
 # Contributing
 
