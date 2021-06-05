@@ -53,7 +53,7 @@ Run the code using:
 
     python3 quotey.py
     
-To periodically run the script, set it as a [cronjob](https://opensource.com/article/17/11/how-use-cron-linux) or systemd
+To periodically run the script, set it as a [cronjob](https://opensource.com/article/17/11/how-use-cron-linux) or systemd. Systemd gives better control over restarts etc when the internet isn't playing nicely
 
 # Video
 
