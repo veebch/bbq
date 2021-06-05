@@ -61,8 +61,8 @@ To periodically run the script, set it as a [cronjob](https://opensource.com/art
 
 # Hardware
 
-The code runs on a Rasperry Pi connected to a 6 inch HD waveshare epaper display
-The fancypants frame was custom made for the project - we've got some assembled ones for sale at [veeb.ch](https://veeb.ch)
+- The code runs on a Rasperry Pi connected to a 6 inch HD waveshare epaper display
+- The fancypants frame was custom made for the project - we've got some assembled ones for sale at [veeb.ch](https://veeb.ch)
 
 # Contributing
 
