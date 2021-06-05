@@ -59,11 +59,11 @@ To periodically run the script, set it as a [cronjob](https://opensource.com/art
 
 Edit the file config.yaml. There are boolean values for activation of modes, as well as a function section that lists the functions that are sampled on for each refresh iteration. There is also a weighting of those samples. 
 
-'''
+```
 function: 
   mode: crypto,redditquotes, wordaday, newyorkercartoon, guardianheadlines
   weight: 40, 1, 0, 0,1  
-'''
+```
 Means that on each iteration there is a 40/1/1 weighting that the code will choose the functions crypto, redditquotes and guardianheadlines respectively.
 
 # Video
