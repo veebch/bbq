@@ -53,11 +53,16 @@ Run the code using:
 
     python3 quotey.py
     
-To periodically run the script, set it as a [cronjob](https://opensource.com/article/17/11/how-use-cron-linux) or systemd
+To periodically run the script, set it as a [cronjob](https://opensource.com/article/17/11/how-use-cron-linux) or systemd. Systemd gives better control over restarts etc when the internet isn't playing nicely
 
 # Video
 
 [![video](https://img.youtube.com/vi/-270Nn1V2hQ/0.jpg)](https://www.youtube.com/watch?v=Xv8eyp-LJJk)
+
+# Hardware
+
+- The code runs on a Rasperry Pi connected to a 6 inch HD waveshare epaper display
+- The fancypants frame was custom made for the project - we've got some assembled ones for sale at [veeb.ch](https://veeb.ch)
 
 # Contributing
 
