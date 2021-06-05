@@ -59,6 +59,11 @@ To periodically run the script, set it as a [cronjob](https://opensource.com/art
 
 [![video](https://img.youtube.com/vi/-270Nn1V2hQ/0.jpg)](https://www.youtube.com/watch?v=Xv8eyp-LJJk)
 
+# Hardware
+
+The code runs on a Rasperry Pi connected to a 6 inch HD waveshare epaper display
+The fancypants frame was custom made for the project - we've got some assembled ones for sale at [veeb.ch](https://veeb.ch)
+
 # Contributing
 
 To contribute, please fork the repository and use a feature branch. Pull requests are welcome.
