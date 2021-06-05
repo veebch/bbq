@@ -1,10 +1,14 @@
 display:
   inverted: false
-  maximalist: true
+  maximalist: false
   feedurl: https://news.hodlhodl.com/news.rss
+  vcom: -2.61
 ticker:
-  currency: bitcoin,ethereum,monero
+  currency: bitcoin,ethereum,dash,litecoin, polkadot
   exchange: default
   fiatcurrency: usd,eur,gbp
-  updatefrequency: 300
+  updatefrequency: 180
   sparklinedays: 28
+function: 
+  mode: crypto,redditquotes, wordaday, newyorkercartoon, guardianheadlines
+  weight: 1, 0, 0, 0, 0
