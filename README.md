@@ -1,7 +1,7 @@
 
 
 ![Action Shot](/images/AudreyVid.jpg)
-
+[![YouTube Channel Views](https://img.shields.io/youtube/channel/views/UCz5BOU9J9pB_O0B8-rDjCWQ?label=YouTube&style=social)](https://www.youtube.com/channel/UCz5BOU9J9pB_O0B8-rDjCWQ)
 # Audrey: Quiet bringer of the internets.
 
 A little 6 inch e-paper screen that connects to wifi and runs a script that pulls the stuff that you've told it you're intersted in, then displays it in pleasingly crispy fonts. The script randomly chooses from 5 options:
